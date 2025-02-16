@@ -1,0 +1,93 @@
+/* resume template page size is 8.50 x 11.00 in, portrait */
+body, html {
+	height: auto;
+	width: auto;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin: 0.5in;
+}
+
+/*
+	note:
+		background-color is usually not respected when printing
+		so workaround using border-top
+	
+	on FireFox:
+		<hr>, even with this CSS, does still not render
+		properly in preview. however, when the resume is
+		actually printed, it does render.
+	
+	on both FireFox and Chrome:
+		you should disable "headers and footers" so it looks clean
+		to make a PDF, go to print, and select "Save as PDF" from one
+		of the dropdown menus
+	
+	on Opera GX:
+		my personal web browser, saving it to PDF does not work,
+		probably because it does not support @page
+*/
+hr {
+	display: block;
+	border: none;
+	border-top: 1px solid black;
+	width: calc(100% + 8px);
+	margin: 0 0 0 -4px;
+	height: 1px;
+}
+
+ul {
+	padding-left: calc(40px + 1cm);
+}
+
+p {
+	padding-left: calc(20px + 1cm);
+}
+
+@media print {
+	body, html {
+		width: 8.50in !important;
+		margin: 0 !important;
+	}
+}
+
+@page {
+    size: 8.50in 11.00in;
+    margin: 0.5in;
+}
+
+.document {
+	width: 8.50in;
+	height: 11.00in;
+	margin: 0 auto;
+}
+
+.header {
+	width: auto;
+	text-align: center;
+}
+
+.header *:not(hr) {
+	margin: 0;
+}
+
+.section {
+	margin: 16px 0;
+}
+
+.section *:not(hr) {
+	margin: 0;
+}
+
+.twocol {
+	width: 75%;
+	display: flex;
+	position: relative;
+}
+
+.twocol > *:nth-child(2) {
+	position: absolute;
+	left: 400px;
+}
